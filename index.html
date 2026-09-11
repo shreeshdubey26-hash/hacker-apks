@@ -231,14 +231,9 @@
             <label>App Name</label>
             <input type="text" id="newAppName" placeholder="e.g. CapCut Pro Mod v3">
             
-            <label>App Logo (Select Image from Device)</label>
-            <div class="file-upload-wrapper">
-                <label for="appLogoUpload" class="file-upload-label">
-                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 20px;"></i> 
-                    <span id="uploadText">Tap to choose logo image...</span>
-                </label>
-                <input type="file" id="appLogoUpload" accept="image/*">
-            </div>
+            <label>App Logo Direct URL (Image Link)</label>
+<input type="text" id="appLogoUrl" placeholder="https://... (image link yahan dalein)">
+            
             
             <label>Category & Size</label>
             <input type="text" id="newAppSize" placeholder="e.g. Video Editor • 150 MB">
@@ -338,7 +333,8 @@
 
             let newApp = {
                 name: name,
-                logo: uploadedImageBase64 || "https://via.placeholder.com/60",
+                logo: document.getElementById('appLogoUrl').value || "https://via.placeholder.com/60",
+          
                 size: size || "50 MB",
                 category: "Mod App",
                 desc: desc || "No description provided.",
@@ -353,9 +349,8 @@
             document.getElementById('newAppSize').value = "";
             document.getElementById('newAppDesc').value = "";
             document.getElementById('newAppDrive').value = "";
-            document.getElementById('uploadText').innerText = "Tap to choose logo image...";
-            uploadedImageBase64 = "";
-
+            document.getElementById('appLogoUrl').value = "";
+                
             renderApps();
             showPage('home');
         }
