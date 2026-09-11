@@ -320,39 +320,43 @@
             });
         }
 
-        function publishApp() {
-            let name = document.getElementById('newAppName').value;
-            let size = document.getElementById('newAppSize').value;
-            let desc = document.getElementById('newAppDesc').value;
-            let drive = document.getElementById('newAppDrive').value;
+        
+         function publishApp() {
+    let name = document.getElementById('appName').value;
+    let size = document.getElementById('appSize').value;
+    let desc = document.getElementById('appDesc').value;
+    let drive = document.getElementById('appDrive').value;
+    let logoUrl = document.getElementById('appLogoUrl').value;
 
-            if(!name || !drive) {
-                alert("App Name aur Google Drive link dalna zaroori hai!");
-                return;
-            }
+    if (!name || !drive) {
+        alert('App Name aur Google Drive link dalna zaroori hai!');
+        return;
+    }
 
-            let newApp = {
-                name: name,
-                logo: document.getElementById('appLogoUrl').value || "https://via.placeholder.com/60",
-          
-                size: size || "50 MB",
-                category: "Mod App",
-                desc: desc || "No description provided.",
-                drive: drive
-            };
+    let newApp = {
+        name: name,
+        logo: logoUrl || "https://via.placeholder.com/60",
+        size: size || "50 MB",
+        category: "Mod App",
+        desc: desc || "No description provided.",
+        drive: drive
+    };
 
-            apps.push(newApp);
-            localStorage.setItem('hacker_apps', JSON.stringify(apps));
-            alert("App Published Successfully! 🚀");
-            
-            document.getElementById('newAppName').value = "";
-            document.getElementById('newAppSize').value = "";
-            document.getElementById('newAppDesc').value = "";
-            document.getElementById('newAppDrive').value = "";
-            document.getElementById('appLogoUrl').value = "";
-                
-            renderApps();
-            showPage('home');
+    let apps = JSON.parse(localStorage.getItem('hacker_apps')) || [];
+    apps.push(newApp);
+    localStorage.setItem('hacker_apps', JSON.stringify(apps));
+    alert('App Published Successfully! 🎉');
+
+    document.getElementById('appName').value = "";
+    document.getElementById('appSize').value = "";
+    document.getElementById('appDesc').value = "";
+    document.getElementById('appDrive').value = "";
+    document.getElementById('appLogoUrl').value = "";
+
+    renderApps();
+    showPage('home');
+          }
+          showPage('home');
         }
 
         function deleteApp(index) {
