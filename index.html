@@ -3,461 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacker APKs Store | Premium</title>
-    <!-- FontAwesome for Modern Icons -->
+    <title>HACKER APKs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root { 
-            --bg: #09090b; 
-            --card: #18181b; 
-            --text-neon: #10b981; 
-            --text-light: #f4f4f5; 
-            --text-muted: #a1a1aa;
-            --accent: #059669;
-            --danger: #ef4444;
-            --glow: 0 0 15px rgba(16, 185, 129, 0.4);
-        }
-        
-        body { 
-            background-color: var(--bg); 
-            color: var(--text-light); 
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        header { 
-            background: rgba(9, 9, 11, 0.8); 
-            backdrop-filter: blur(10px);
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid #27272a; 
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo { 
-            font-size: 22px; 
-            font-weight: 800; 
-            color: var(--text-neon);
-            text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        nav a { 
-            color: var(--text-light); 
-            text-decoration: none; 
-            margin-left: 20px; 
-            cursor: pointer; 
-            font-weight: 600; 
-            transition: 0.3s;
-        }
-        nav a:hover { color: var(--text-neon); }
-
-        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        .hidden { display: none !important; }
-
-        .search-container { position: relative; margin-bottom: 25px; }
-        .search-container i { position: absolute; left: 15px; top: 15px; color: var(--text-muted); }
-        .search-bar { 
-            width: 100%; 
-            padding: 12px 15px 12px 45px; 
-            background: var(--card); 
-            border: 1px solid #27272a; 
-            color: white; 
-            border-radius: 12px; 
-            font-size: 16px;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
-        }
-        .search-bar:focus { border-color: var(--text-neon); box-shadow: var(--glow); }
-
-        .app-grid { display: flex; flex-direction: column; gap: 15px; }
-        .app-card { 
-            background: var(--card); 
-            border: 1px solid #27272a; 
-            border-radius: 16px; 
-            padding: 15px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
-        .app-card:hover { 
-            transform: translateY(-3px); 
-            border-color: var(--text-neon);
-            box-shadow: var(--glow);
-        }
-        .app-info { display: flex; align-items: center; gap: 15px; }
-        .app-icon { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 6px rgba(0,0,0,0.3); background: #27272a; }
-        .app-info h3 { margin: 0 0 5px 0; font-size: 18px; }
-        .app-info p { margin: 0; font-size: 13px; color: var(--text-muted); }
-        .star { color: #fbbf24; }
-
-        .btn { 
-            background: var(--accent); 
-            color: white; 
-            padding: 10px 20px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            border: none; 
-            display: inline-flex; 
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: 0.3s; 
-        }
-        .btn:hover { background: var(--text-neon); box-shadow: var(--glow); }
-
-        .details-header { text-align: center; margin-bottom: 25px; }
-        .details-logo { width: 120px; height: 120px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); margin-bottom: 15px; object-fit: cover; }
-        .stats-row { display: flex; justify-content: center; gap: 20px; margin: 15px 0; color: var(--text-muted); font-size: 14px; }
-        .stats-row div { text-align: center; }
-        .stats-row div span { display: block; font-weight: bold; color: var(--text-light); font-size: 16px; margin-bottom: 3px; }
-
-        .desc-box { background: var(--card); padding: 20px; border-radius: 12px; color: #d4d4d8; line-height: 1.6; margin-bottom: 25px; border: 1px solid #27272a; }
-
-        .review-box { background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid #27272a; margin-bottom: 12px; }
-        .review-input, .review-select { width: 100%; padding: 12px; margin-bottom: 15px; background: #000; border: 1px solid #3f3f46; color: white; border-radius: 8px; box-sizing: border-box; }
-
-        .setting-item { display: flex; justify-content: space-between; align-items: center; background: var(--card); padding: 18px; margin-bottom: 12px; border-radius: 12px; border-left: 4px solid var(--text-neon); }
-
-        .admin-box { background: var(--card); padding: 25px; border-radius: 16px; border: 1px solid var(--danger); margin-bottom: 25px; }
-        .admin-box label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 14px; }
-        .admin-box input[type="text"], .admin-box textarea { width: 100%; padding: 12px; margin-bottom: 20px; background: #09090b; border: 1px solid #3f3f46; color: white; border-radius: 8px; box-sizing: border-box; }
-
-        .manage-item { display: flex; justify-content: space-between; align-items: center; background: #09090b; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #27272a; }
-
-        .file-upload-wrapper { margin-bottom: 20px; }
-        .file-upload-label { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; background: #09090b; border: 2px dashed #3f3f46; border-radius: 8px; color: var(--text-muted); cursor: pointer; transition: 0.3s; }
-        .file-upload-label:hover { border-color: var(--text-neon); color: var(--text-neon); }
-        input[type="file"] { display: none; }
-    </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo"><i class="fa-solid fa-user-ninja"></i> HACKER APKs</div>
-        <nav>
-            <a onclick="showPage('home')"><i class="fa-solid fa-house"></i></a>
-            <a onclick="showPage('settings')"><i class="fa-solid fa-gear"></i></a>
-        </nav>
-    </header>
+    <!-- Top Header -->
+    <div style="background: #09090b; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #27272a;">
+        <div style="display: flex; align-items: center; gap: 10px; color: #22c55e; font-weight: bold; font-size: 18px;">
+            <i class="fa-solid fa-user-secret"></i> HACKER APKs
+        </div>
+        <div style="display: flex; gap: 15px; font-size: 20px; color: #fff; cursor: pointer;">
+            <i class="fa-solid fa-house" onclick="showPage('home')"></i>
+            <i class="fa-solid fa-gear" onclick="showPage('admin')"></i>
+        </div>
+    </div>
 
     <!-- HOME PAGE -->
-    <div id="home" class="container">
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" class="search-bar" placeholder="Search for apps, mods..." onkeyup="searchApps()">
+    <div id="home" class="page">
+        <div style="text-align: center; padding: 20px; color: #ef4444; font-weight: bold; font-size: 22px;">
+            >_ ROOT ACCESS
         </div>
-        
-        <div class="app-grid" id="app-list"></div>
+        <div style="padding: 0 15px;">
+            <input type="text" id="searchInput" placeholder="Search apps..." onkeyup="searchApps()" style="width: 100%; padding: 12px; background: #18181b; border: 1px solid #27272a; color: #fff; border-radius: 8px; margin-bottom: 15px;">
+        </div>
+        <div id="app-list"></div>
     </div>
 
-    <!-- APP DETAILS PAGE -->
-    <div id="app-details" class="container hidden">
-        <button onclick="showPage('home')" class="btn" style="background: #27272a; margin-bottom: 20px;">
-            <i class="fa-solid fa-arrow-left"></i> Back
-        </button>
-        
-        <div class="details-header">
-            <img id="detail-logo" src="" class="details-logo" alt="App Logo">
-            <h2 id="detail-title" style="margin: 10px 0; font-size: 24px;">App Title</h2>
+    <!-- ADMIN PANEL -->
+    <div id="admin" class="page hidden">
+        <div class="admin-box" style="padding: 20px; margin: 15px; background: #121214; border: 1px dashed #ef4444; border-radius: 12px;">
+            <h2 style="color: #ef4444; text-align: center; margin-top: 0;"><i class="fa-solid fa-terminal"></i> ADMIN DASHBOARD</h2>
             
-            <div class="stats-row">
-                <div><span id="detail-star"><i class="fa-solid fa-star star"></i> 4.9</span>Rating</div>
-                <div><span id="detail-size">150 MB</span>Size</div>
-                <div><span id="detail-category">Editor</span>Category</div>
-            </div>
+            <label style="color: #a1a1aa; font-size: 14px;">App Name</label>
+            <input type="text" id="appName" placeholder="e.g. CapCut Pro Mod v3" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; background: #18181b; border: 1px solid #27272a; color: #fff; border-radius: 6px;">
 
-            <a id="detail-download" href="#" target="_blank" class="btn" style="font-size: 16px; padding: 15px; width: 100%; box-sizing: border-box; margin-top: 10px;">
-                <i class="fa-solid fa-cloud-arrow-down"></i> DOWNLOAD APK (GOOGLE DRIVE)
-            </a>
-        </div>
+            <label style="color: #a1a1aa; font-size: 14px;">App Logo Direct URL (Image Link)</label>
+            <input type="text" id="appLogoUrl" placeholder="https://... (image link yahan dalein)" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; background: #18181b; border: 1px solid #27272a; color: #fff; border-radius: 6px;">
 
-        <h3 style="margin-bottom: 15px;"><i class="fa-solid fa-circle-info"></i> About this App</h3>
-        <div id="detail-desc" class="desc-box">Description...</div>
+            <label style="color: #a1a1aa; font-size: 14px;">Category & Size</label>
+            <input type="text" id="appSize" placeholder="e.g. Video Editor • 150 MB" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; background: #18181b; border: 1px solid #27272a; color: #fff; border-radius: 6px;">
 
-        <h3 style="margin-bottom: 15px;"><i class="fa-solid fa-comments"></i> User Reviews</h3>
-        <div id="reviews-container"></div>
+            <label style="color: #a1a1aa; font-size: 14px;">Description</label>
+            <textarea id="appDesc" placeholder="Write full app details here..." rows="4" style="width: 100%; padding: 10px; margin: 5px 0 15px 0; background: #18181b; border: 1px solid #27272a; color: #fff; border-radius: 6px;"></textarea>
 
-        <div style="background: var(--card); padding: 20px; border-radius: 12px; margin-top: 20px; border: 1px solid #27272a;">
-            <h4 style="margin-top: 0;">Write a Review</h4>
-            <select id="review-stars" class="review-select">
-                <option value="⭐⭐⭐⭐⭐">5 Stars - Outstanding</option>
-                <option value="⭐⭐⭐⭐">4 Stars - Very Good</option>
-                <option value="⭐⭐⭐">3 Stars - Average</option>
-                <option value="⭐⭐">2 Stars - Poor</option>
-                <option value="⭐">1 Star - Terrible</option>
-            </select>
-            <textarea id="review-text" class="review-input" rows="3" placeholder="What do you think about this app?"></textarea>
-            <button onclick="addReview()" class="btn" style="width: 100%;"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
-        </div>
-    </div>
+            <label style="color: #a1a1aa; font-size: 14px;">Google Drive Download Link</label>
+            <input type="text" id="appDrive" placeholder="https://drive.google.com/file/d/..." style="width: 100%; padding: 10px; margin: 5px 0 15px 0; background: #18181b; border: 1px solid #27272a; color: #fff; border-radius: 6px;">
 
-    <!-- SETTINGS PAGE -->
-    <div id="settings" class="container hidden">
-        <h2 style="margin-bottom: 25px;"><i class="fa-solid fa-sliders"></i> System Settings</h2>
-        
-        <div class="setting-item">
-            <div><strong><i class="fa-solid fa-ghost"></i> Ghost Mode</strong></div>
-            <span style="color: var(--text-neon); font-weight: bold;">ON</span>
-        </div>
-        <div class="setting-item">
-            <div><strong><i class="fa-solid fa-shield-halved"></i> Anti-Ban Shield</strong></div>
-            <span style="color: var(--text-neon); font-weight: bold;">ACTIVE</span>
-        </div>
-
-        <div style="background: #09090b; padding: 25px; border-radius: 12px; text-align: center; border: 1px dashed #3f3f46; margin-top: 40px;">
-            <p style="color: #52525b; font-size: 12px; letter-spacing: 1px;">HACKER APKS (FUN PROJECT)</p>
-            <p id="version-text" style="cursor:pointer; user-select:none; font-weight: 800; color: #3f3f46; font-size: 24px; margin: 10px 0;">VERSION 2.0</p>
-        </div>
-    </div>
-
-    <!-- OWNER DASHBOARD -->
-    <div id="admin" class="container hidden">
-        <div class="admin-box">
-            <h2 style="color: var(--danger); text-align: center; margin-top: 0;"><i class="fa-solid fa-terminal"></i> ROOT ACCESS</h2>
-            
-            <label>App Name</label>
-            <input type="text" id="newAppName" placeholder="e.g. CapCut Pro Mod v3">
-            
-            <label>App Logo Direct URL (Image Link)</label>
-<input type="text" id="appLogoUrl" placeholder="https://... (image link yahan dalein)">
-            
-            
-            <label>Category & Size</label>
-            <input type="text" id="newAppSize" placeholder="e.g. Video Editor • 150 MB">
-            
-            <label>Description</label>
-            <textarea id="newAppDesc" placeholder="Write full app details here..." rows="4"></textarea>
-            
-            <label>Google Drive Download Link</label>
-            <input type="text" id="newAppDrive" placeholder="https://drive.google.com/file/d/...">
-            
-            <button class="btn" style="width: 100%; margin-top: 15px; background: var(--danger);" onclick="publishApp()">
+            <button class="btn" style="width: 100%; padding: 12px; background: #ef4444; color: #fff; border: none; font-weight: bold; border-radius: 6px; cursor: pointer;" onclick="publishApp()">
                 <i class="fa-solid fa-rocket"></i> PUBLISH NEW VERSION
             </button>
         </div>
 
-        <div class="admin-box">
-            <h3 style="color: var(--text-neon); margin-top: 0;"><i class="fa-solid fa-trash-can"></i> Manage & Delete Apps</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">Purane versions ya unwanted apps yahan se delete karein.</p>
+        <div style="padding: 0 15px 20px 15px;">
+            <h3 style="color: #22c55e; font-size: 15px; margin-bottom: 10px;">Manage & Delete Apps:</h3>
             <div id="admin-app-list"></div>
         </div>
     </div>
-      <script>
-        let uploadedImageBase64 = "";
 
-        document.getElementById('appLogoUpload').addEventListener('change', function(event) {
-            let file = event.target.files[0];
-            if (file) {
-                document.getElementById('uploadText').innerText = "Selected: " + file.name;
-                document.getElementById('uploadText').style.color = "var(--text-neon)";
-                
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedImageBase64 = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        let apps = JSON.parse(localStorage.getItem('hacker_apps')) || [
-            {
-                name: "CapCut Pro Edits",
-                logo: "https://play-lh.googleusercontent.com/KSuaRLiI_FlDP8cM4MzJ23ml3og5Hxb9AapaGTMZ2GgR103mvJ3AAnoOFz1IheeQBEE=w240-h480-rw",
-                size: "344.79 MB",
-                category: "Video Editor",
-                desc: "Premium Video Editor without watermark. All pro effects and transitions unlocked.",
-                drive: "https://drive.google.com/file/d/1mNkFc12qYIe9iHjGtX8RqjTDbDgIoqyZ/view?usp=drivesdk"
-          
-            }
-        ];
-
-        function renderApps() {
-            let list = document.getElementById('app-list');
-            let adminList = document.getElementById('admin-app-list');
-            if(!list || !adminList) return;
-            
-            list.innerHTML = "";
-            adminList.innerHTML = "";
-
-            apps.forEach((app, index) => {
-                let div = document.createElement('div');
-                div.className = 'app-card';
-                div.onclick = () => openApp(app.name, app.logo, app.size, app.category, app.desc, app.drive);
-                div.innerHTML = `
-                    <div class="app-info">
-                        <img src="${app.logo}" class="app-icon" alt="icon">
-                        <div>
-                            <h3>${app.name}</h3>
-                            <p>${app.category} • <i class="fa-solid fa-star star"></i> 4.9</p>
-                        </div>
-                    </div>
-                    <div class="btn" style="padding: 8px 12px; font-size: 14px;">GET</div>
-                `;
-                list.appendChild(div);
-
-                let adminItem = document.createElement('div');
-                adminItem.className = 'manage-item';
-                adminItem.innerHTML = `
-                    <span style="font-weight: 600; font-size: 14px;">${app.name}</span>
-                    <button class="btn" style="background: var(--danger); padding: 6px 12px; font-size: 12px;" onclick="deleteApp(${index})">
-                        <i class="fa-solid fa-trash"></i> DELETE
-                    </button>
-                `;
-                adminList.appendChild(adminItem);
-            });
+    <!-- APP DETAILS PAGE -->
+    <div id="app-details" class="page hidden" style="padding: 20px; color: #fff;">
+        <button onclick="showPage('home')" style="background: #27272a; color: #fff; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; margin-bottom: 20px;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <h2 id="detail-title" style="color: #22c55e;"></h2>
+        <img id="detail-logo" src="" style="width: 80px; height: 80px; border-radius: 12px; margin: 10px 0;">
+        <p id="detail-size" style="color: #a1a1aa;"></p>
+        <p id="detail-category" style="color: #ef4444; font-weight: bold;"></p>
+        <p id="detail-desc" style="margin: 15px 0; line-height: 1.5;"></p>
+        <a id="detail-download" href="#" target="_blank" style="display: inline-block; background: #22c55e; color: #000; padding: 12px 25px; font-weight: bold; text-decoration: none; border-radius: 8px; margin-top: 15px;">DOWNLOAD APK</a>
+    </div>
+    <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+    body { background-color: #050507; color: #e4e4e7; }
+    .hidden { display: none !important; }
+    .app-card { background: #121214; border: 1px solid #27272a; border-radius: 12px; padding: 12px; margin: 10px 15px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+    .app-card:active { background: #18181b; }
+    .app-info { display: flex; align-items: center; gap: 12px; }
+    .app-icon { width: 50px; height: 50px; border-radius: 10px; object-fit: cover; }
+    .manage-item { background: #121214; border: 1px solid #27272a; border-radius: 8px; padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+    </style>
+    <script>
+    let apps = JSON.parse(localStorage.getItem('hacker_apps')) || [
+        {
+            name: "CapCut Pro Edits",
+            logo: "https://play-lh.googleusercontent.com/RSuaRLti_FlDB8dMmJ23ru3Og5hSxb9AspaGTMZ2gGtR3Mvj3ARnoFz",
+            size: "344.78 MB",
+            category: "Video Editor",
+            desc: "Premium Video Editor without watermark. All pro effects and transitions unlocked.",
+            drive: "https://drive.google.com/file/d/1eNkfcc12cYlUo0IHgGLX8RyjT4BDglOqzyZ/view?usp=drive_sdk"
         }
+    ];
 
-        
-         function publishApp() {
-    let name = document.getElementById('appName').value;
-    let size = document.getElementById('appSize').value;
-    let desc = document.getElementById('appDesc').value;
-    let drive = document.getElementById('appDrive').value;
-    let logoUrl = document.getElementById('appLogoUrl').value;
+    function renderApps() {
+        let list = document.getElementById('app-list');
+        let adminList = document.getElementById('admin-app-list');
+        if (!list) return;
 
-    if (!name || !drive) {
-        alert('App Name aur Google Drive link dalna zaroori hai!');
-        return;
+        list.innerHTML = "";
+        adminList.innerHTML = "";
+
+        apps.forEach((app, index) => {
+            // Home App Card
+            let div = document.createElement('div');
+            div.className = "app-card";
+            div.onclick = () => openApp(app.name, app.logo, app.size, app.category, app.desc, app.drive);
+            div.innerHTML = `
+                <div class="app-info">
+                    <img src="${app.logo}" class="app-icon" alt="icon">
+                    <div>
+                        <h3 style="font-size: 16px; color: #fff;">${app.name}</h3>
+                        <p style="font-size: 12px; color: #a1a1aa;"><i class="fa-solid fa-star" style="color: #eab308;"></i> 4.9 • ${app.size}</p>
+                    </div>
+                </div>
+                <div style="background: #27272a; padding: 6px 12px; font-size: 14px; border-radius: 6px; color: #fff; font-weight: bold;">GET</div>
+            `;
+            list.appendChild(div);
+
+            // Admin Management List Item
+            let adminItem = document.createElement('div');
+            adminItem.className = "manage-item";
+            adminItem.innerHTML = `
+                <span style="font-weight: 600; font-size: 14px; color: #fff;">${app.name}</span>
+                <button style="background: #ef4444; color: #fff; border: none; padding: 6px 12px; font-size: 12px; border-radius: 6px; cursor: pointer;" onclick="deleteApp(${index})">
+                    <i class="fa-solid fa-trash"></i> DELETE
+                </button>
+            `;
+            adminList.appendChild(adminItem);
+        });
     }
 
-    let newApp = {
-        name: name,
-        logo: logoUrl || "https://via.placeholder.com/60",
-        size: size || "50 MB",
-        category: "Mod App",
-        desc: desc || "No description provided.",
-        drive: drive
-    };
+    function publishApp() {
+        let name = document.getElementById('appName').value;
+        let size = document.getElementById('appSize').value;
+        let desc = document.getElementById('appDesc').value;
+        let drive = document.getElementById('appDrive').value;
+        let logoUrl = document.getElementById('appLogoUrl').value;
 
-    let apps = JSON.parse(localStorage.getItem('hacker_apps')) || [];
-    apps.push(newApp);
-    localStorage.setItem('hacker_apps', JSON.stringify(apps));
-    alert('App Published Successfully! 🎉');
-
-    document.getElementById('appName').value = "";
-    document.getElementById('appSize').value = "";
-    document.getElementById('appDesc').value = "";
-    document.getElementById('appDrive').value = "";
-    document.getElementById('appLogoUrl').value = "";
-
-    renderApps();
-    showPage('home');
-          }
-          showPage('home');
+        if (!name || !drive) {
+            alert('App Name aur Google Drive link dalna zaroori hai!');
+            return;
         }
 
-        function deleteApp(index) {
-            if(confirm("Kya aap waqai is app ko delete karna chahte hain?")) {
-                apps.splice(index, 1);
-                localStorage.setItem('hacker_apps', JSON.stringify(apps));
-                renderApps();
-                alert("App Deleted Successfully! 🗑️");
-            }
-        }
+        let newApp = {
+            name: name,
+            logo: logoUrl || "https://via.placeholder.com/60",
+            size: size || "50 MB",
+            category: "Mod App",
+            desc: desc || "No description provided.",
+            drive: drive
+        };
 
-        function showPage(pageId) {
-            document.getElementById('home').classList.add('hidden');
-            document.getElementById('settings').classList.add('hidden');
-            document.getElementById('admin').classList.add('hidden');
-            document.getElementById('app-details').classList.add('hidden');
-            let targetPage = document.getElementById(pageId);
-            if(targetPage) {
-                targetPage.classList.remove('hidden');
-            }
-            window.scrollTo(0,0);
-        }
+        apps.push(newApp);
+        localStorage.setItem('hacker_apps', JSON.stringify(apps));
+        alert('App Published Successfully! 🎉');
 
-        let currentApp = "";
-        function openApp(title, logoUrl, size, category, desc, downloadLink) {
-            currentApp = title;
-            document.getElementById('detail-title').innerText = title;
-            document.getElementById('detail-logo').src = logoUrl;
-            document.getElementById('detail-size').innerText = size;
-            document.getElementById('detail-category').innerText = category;
-            document.getElementById('detail-desc').innerText = desc;
-            document.getElementById('detail-download').href = downloadLink;
-            loadReviews(); 
-            showPage('app-details');
-        }
-
-        function searchApps() {
-            let filter = document.getElementById('searchInput').value.toUpperCase();
-            let cards = document.getElementsByClassName('app-card');
-            for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].querySelector('h3').innerText;
-                if (title.toUpperCase().indexOf(filter) > -1) {
-                    cards[i].style.display = "flex";
-                } else {
-                    cards[i].style.display = "none";
-                }
-            }
-        }
-
-        let tapCount = 0;
-        let tapTimer;
-        document.getElementById('version-text').addEventListener('click', () => {
-            tapCount++;
-            clearTimeout(tapTimer);
-            if (tapCount === 7) {
-                let pass = prompt("Enter Root Password:");
-                if (pass === "24270000") {
-                    alert("Welcome Owner.");
-                    showPage('admin');
-                } else {
-                    alert("ACCESS DENIED!");
-                }
-                tapCount = 0;
-            }
-            tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
-        });
-
-        function addReview() {
-            let text = document.getElementById('review-text').value;
-            let stars = document.getElementById('review-stars').value;
-            if(text.trim() === "") return alert("Please write something!");
-            let newReview = { stars: stars, text: text, date: new Date().toLocaleDateString() };
-            let storedReviews = JSON.parse(localStorage.getItem('reviews_' + currentApp)) || [];
-            storedReviews.push(newReview);
-            localStorage.setItem('reviews_' + currentApp, JSON.stringify(storedReviews));
-            document.getElementById('review-text').value = ""; 
-            loadReviews(); 
-        }
-
-        function loadReviews() {
-            let container = document.getElementById('reviews-container');
-            container.innerHTML = "";
-            let storedReviews = JSON.parse(localStorage.getItem('reviews_' + currentApp)) || [];
-            if(storedReviews.length === 0) {
-                container.innerHTML = "<p style='color:var(--text-muted); text-align:center; padding: 20px 0;'>No reviews yet. Be the first!</p>";
-                return;
-            }
-            storedReviews.slice().reverse().forEach(review => {
-                let div = document.createElement('div');
-                div.className = 'review-box';
-                div.innerHTML = `<div style="margin-bottom:8px; display:flex; justify-content:space-between;">
-                                    <span>${review.stars}</span>
-                                    <span style="color:var(--text-muted); font-size:12px;">Guest • ${review.date}</span>
-                                 </div>
-                                 <div style="font-size:14px; line-height: 1.5;">${review.text}</div>`;
-                container.appendChild(div);
-            });
-        }
+        document.getElementById('appName').value = "";
+        document.getElementById('appSize').value = "";
+        document.getElementById('appDesc').value = "";
+        document.getElementById('appDrive').value = "";
+        document.getElementById('appLogoUrl').value = "";
 
         renderApps();
-    </script>
+        showPage('home');
+    }
+
+    function deleteApp(index) {
+        if (confirm('Kya aap waqai is app ko delete karna chahte hain?')) {
+            apps.splice(index, 1);
+            localStorage.setItem('hacker_apps', JSON.stringify(apps));
+            renderApps();
+            alert('App Deleted Successfully! 🗑️');
+        }
+    }
+
+    function showPage(pageId) {
+        document.getElementById('home').classList.add('hidden');
+        document.getElementById('admin').classList.add('hidden');
+        document.getElementById('app-details').classList.add('hidden');
+
+        let targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            targetPage.classList.remove('hidden');
+        }
+        window.scrollTo(0, 0);
+    }
+
+    function openApp(title, logoUrl, size, category, desc, downloadLink) {
+        document.getElementById('detail-title').innerText = title;
+        document.getElementById('detail-logo').src = logoUrl;
+        document.getElementById('detail-size').innerText = size;
+        document.getElementById('detail-category').innerText = category;
+        document.getElementById('detail-desc').innerText = desc;
+        document.getElementById('detail-download').href = downloadLink;
+        showPage('app-details');
+    }
+
+    function searchApps() {
+        let filter = document.getElementById('searchInput').value.toUpperCase();
+        let cards = document.getElementsByClassName('app-card');
+        for (let i = 0; i < cards.length; i++) {
+            let title = cards[i].querySelector('h3').innerText;
+            if (title.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "flex";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+
+    // Run on load
+    window.onload = function() {
+        renderApps();
+    };
+</script>
+
 </body>
 </html>
-          
